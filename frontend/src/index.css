@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased text-gray-800 selection:bg-primary-200 selection:text-primary-900;
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    @apply bg-white/40 backdrop-blur-md border border-white/60 shadow-glass;
+  }
+  
+  .glass-dark-effect {
+    @apply bg-gray-900/60 backdrop-blur-md border border-gray-700/50 shadow-glass;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-500;
+  }
+
+  .bg-gradient-app {
+    @apply bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-50 via-purple-50 to-white min-h-screen relative overflow-hidden;
+  }
+  
+  /* Modern scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-200 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-300;
+  }
+}
+
+/* Background gradient blobs to create the floating/glass aesthetic */
+.blob-shape {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  opacity: 0.5;
+  animation: blob-bounce 20s infinite alternate;
+}
+
+.blob-1 {
+  top: -10%;
+  left: -10%;
+  width: 40vw;
+  height: 40vw;
+  background: theme('colors.primary.200');
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  bottom: -10%;
+  right: -10%;
+  width: 30vw;
+  height: 30vw;
+  background: theme('colors.secondary.200');
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  top: 40%;
+  left: 60%;
+  width: 25vw;
+  height: 25vw;
+  background: theme('colors.indigo.200');
+  animation-delay: -10s;
+}
+
+@keyframes blob-bounce {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
